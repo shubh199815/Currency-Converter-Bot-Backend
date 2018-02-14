@@ -2,11 +2,19 @@ from flask import Flask
 from flask_restplus import Api, Resource, fields
 import requests
 import json
+
+from app import app
+
 api = Api(app)
 ACCESS_TOKEN = "4698f4c543d948d0f351984b084acacc5e574514ce98ab50"
+expect_for_signup = api.model('signup', {'username': fields.String('username'), 'password': fields.String('password'), 'email': fields.String('email')})
+expect_for_login = api.model('login', {'username': fields.String('username'), 'password': fields.String('password')})
 expect_for_query = api.model('query', {'query': fields.String('Convert 50 Dollars to Rupees')})
+expect_for_logout = api.model('logout', {'username': fields.String('username')})
 
 
+@api.route('/signup')
+class Todo(Resource):
     @api.expect(expect_for_signup)
     def post(self):
         username = api.payload["username"]
