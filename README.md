@@ -1,1 +1,2 @@
-# FingeraanBot_Hasura
+Currency Converter Application
+
